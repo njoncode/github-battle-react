@@ -1,17 +1,31 @@
+/*
+Creating a list of <li> elements from the friends array being passed into List. Your final UI for each one should look like this.
+solution */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Hello from './hello';
 
-class App extends React.Component {
+class List extends React.Component {
   render() {
     return (
-      <Hello
-        img="https://avatars0.githubusercontent.com/u/2933430?v=3&s=460"
-        name="Tyler McGinnis"
-        username="tylermcginnis"
-      />
+      <ul id="friends">
+        {this.props.friends.map((friend) => (
+          <li key={friend.name}>{friend.name}</li>
+        ))}
+      </ul>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(
+  <List
+    friends={[
+      { id: 893, name: 'Mikenzi' },
+      { id: 871, name: 'Cash' },
+      { id: 982, name: 'Steven' },
+      { id: 961, name: 'Kimmy' },
+      { id: 117, name: 'Doug' },
+    ]}
+  />,
+  document.getElementById('app')
+);
