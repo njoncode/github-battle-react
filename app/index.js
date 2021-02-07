@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Hello from './hello';
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
-    return <Hello name="Coders - Welcome to Coding World!" tutorial="React" />;
+    return (
+      <Hello
+        img="https://avatars0.githubusercontent.com/u/2933430?v=3&s=460"
+        name="Tyler McGinnis"
+        username="tylermcginnis"
+      />
+    );
   }
 }
 

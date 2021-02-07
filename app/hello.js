@@ -4,9 +4,11 @@ import './index.css';
 class Hello extends React.Component {
   render() {
     return (
-      <h1>
-        Hello, {this.props.name} <br /> Tutorial: {this.props.tutorial}
-      </h1>
+      <div>
+        <img src={this.props.img} />
+        <h1>Name: {this.props.name}</h1>
+        <h3>username: {this.props.username}</h3>
+      </div>
     );
   }
 }
