@@ -1,15 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Hello from './hello';
 
-// A Component can have following aspects:
-// State
-// Lifecycle
-// UI
-
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
-    return <div>Hello Shikamaru!</div>;
+    return <Hello name="Coders - Welcome to Coding World!" tutorial="React" />;
   }
 }
 
