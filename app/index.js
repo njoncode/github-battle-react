@@ -13,3 +13,5 @@ class App extends React.Component {
   }
 }
 ReactDOM.render(<App />, document.getElementById('app'));
+
+// class is a reserved word in javascript. So if we want to add a class to a specific JSX element, we need to use className instead of class.
