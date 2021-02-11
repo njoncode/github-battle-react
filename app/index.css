@@ -208,3 +208,7 @@ color: inherit;
     color: #c7c7c7;
     cursor: not-allowed;
 }
+
+.player-container {
+    margin: 100px 0;
+}
