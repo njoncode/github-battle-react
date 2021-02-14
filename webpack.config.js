@@ -11,6 +11,7 @@ module.exports = {
     // Webpack puts the final bundle at dist/index_bundle.js. Names the final bundle index_bundle.js and put it in a folder called dist.
     path: path.resolve(__dirname, 'dist'),
     filename: 'index_bundle.js',
+    publicPath: '/', //    '/' indicates index page
   },
 
   // All of the information for your loaders will go into an array of objects under module.rules.
@@ -28,6 +29,10 @@ module.exports = {
       template: 'app/index.html',
     }),
   ],
+
+  devServer: {
+    historyApiFallback: true, //  this tells webpack dev server to not try to handle a new request that comes into the server, instead just fallback to whatever the public path is, which is in this case just our main index page.
+  },
 };
 
 // In order to use HtmlWebpackPlugin, we create a new instance of it inside of our plugins array.
