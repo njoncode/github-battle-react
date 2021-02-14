@@ -43,9 +43,16 @@ Tooltip.propTypes = {
 };
 
 /* How to share logic throughout our application:
+   Patterns for accomplishing DRY (Don't Repeat Yourself) in a React codebase.
 
-  (1) Higher Order Component pattern
-  (2) Render Props pattern 
+  (1) Higher-Order Component pattern
+  (2) Render Prop pattern 
 
-Render Props Pattern is better than Higher Order Component pattern for sharing logic throughout our application.
+Render Prop Pattern is better than Higher-Order Component pattern for sharing logic throughout our application.
+
+HOCs have some pitfalls. The biggest one is with inversion of control and naming collisions. 
+Because we have to pass our component over to the Higher-Order component, we have no control over how it’s rendered. 
+
+With Render Props, instead of handing over the component, we hand over a function. 
+Then, when that function is invoked, it’ll be passed the data we need — no inversion of control and no naming collisions since we can decide how the component is rendered.
 */
