@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withHover from './withHover';
+import Hover from './Hover';
 
 const styles = {
   container: {
@@ -25,18 +25,27 @@ const styles = {
   },
 };
 
-function Tooltip({ text, children, hovering }) {
+export default function Tooltip({ text, children }) {
   return (
-    <div style={styles.container}>
-      {hovering === true && <div style={styles.tooltip}>{text}</div>}
-      {children}
-    </div>
+    <Hover>
+      {(hovering) => (
+        <div style={styles.container}>
+          {hovering === true && <div style={styles.tooltip}>{text}</div>}
+          {children}
+        </div>
+      )}
+    </Hover>
   );
 }
 
 Tooltip.propTypes = {
   text: PropTypes.string.isRequired,
-  hovering: PropTypes.bool.isRequired,
 };
 
-export default withHover(Tooltip, 'hovering');
+/* How to share logic throughout our application:
+
+  (1) Higher Order Component pattern
+  (2) Render Props pattern 
+
+Render Props Pattern is better than Higher Order Component pattern for sharing logic throughout our application.
+*/
