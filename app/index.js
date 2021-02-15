@@ -2,11 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Popular from './components/Popular';
-import Battle from './components/Battle';
 import { ThemeProvider } from './contexts/theme';
 import Nav from './components/Nav';
-import Results from './components/Results';
+import Loading from './components/Loading';
+
+/*
+  The dynamic-import-syntax allows us import modules dynamically.
+  Reactlazy allows us to render a dynamic import just as a regular component.
+  So we combine those two ideas, we create these regular components, pass those as components to React Routers Route component.
+  And now Popular won't be loaded until we are at the Popular path,
+  Battle won't be loaded until we are at '/Battle' & 
+  Results won't be loaded until we are at '/Battle/Results'.
+
+  So using dynamic import syntax, React.lazy & React.Suspense, we can delay importing a specific module & all of the modules 
+  that that module depends on, until the user actually needs that code.
+
+*/
+
+const Popular = React.lazy(() => import('./components/Popular'));
+const Battle = React.lazy(() => import('./components/Battle'));
+const Results = React.lazy(() => import('./components/Results'));
 
 // We can write components like this. Instead of having a constructor, we can add properties to our state just by having the syntax right here.
 // Arrow function methods allow the components to prevent having to bind the method in the constructor.
@@ -27,12 +42,18 @@ class App extends React.Component {
           <div className={this.state.theme}>
             <div className="container">
               <Nav />
-              <Switch>
-                <Route exact path="/" component={Popular} />
-                <Route exact path="/battle" component={Battle} />
-                <Route path="/battle/results" component={Results} />
-                <Route render={() => <h1>404</h1>} />
-              </Switch>
+              <React.Suspense fallback={<Loading />}>
+                {/* 
+                We give Supense a prop called fallback and if these modules - Popular, Battle, Results take too long to import 
+                then React.Suspense is going to show the prop that we pass to fallback (here we use Loading Component). 
+                */}
+                <Switch>
+                  <Route exact path="/" component={Popular} />
+                  <Route exact path="/battle" component={Battle} />
+                  <Route path="/battle/results" component={Results} />
+                  <Route render={() => <h1>404</h1>} />
+                </Switch>
+              </React.Suspense>
             </div>
           </div>
         </ThemeProvider>
