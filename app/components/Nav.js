@@ -16,7 +16,7 @@ export default function Nav() {
             <li>
               <NavLink
                 to="/"
-                exact
+                exact // only add the styles when the path of the current url matches exactly.
                 activeStyle={activeStyle}
                 className="nav-link"
               >
