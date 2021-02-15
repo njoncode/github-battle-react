@@ -8,19 +8,17 @@ import { ThemeProvider } from './contexts/theme';
 import Nav from './components/Nav';
 import Results from './components/Results';
 
+// We can write components like this. Instead of having a constructor, we can add properties to our state just by having the syntax right here.
+// Arrow function methods allow the components to prevent having to bind the method in the constructor.
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      theme: 'light',
-      toggleTheme: () => {
-        this.setState(({ theme }) => ({
-          theme: theme === 'light' ? 'dark' : 'light',
-        }));
-      },
-    };
-  }
+  state = {
+    theme: 'light',
+    toggleTheme: () => {
+      this.setState(({ theme }) => ({
+        theme: theme === 'light' ? 'dark' : 'light',
+      }));
+    },
+  };
 
   render() {
     return (
