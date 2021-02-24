@@ -27,13 +27,18 @@ const Results = React.lazy(() => import('./components/Results'));
 // Arrow function methods allow the components to prevent having to bind the method in the constructor.
 class App extends React.Component {
   state = {
-    theme: 'light',
+    theme: 'light', // theme will be set to "light" as default.
     toggleTheme: () => {
       this.setState(({ theme }) => ({
         theme: theme === 'light' ? 'dark' : 'light',
       }));
     },
   };
+
+  /**
+   * We are updating the current state based on the previous state, so we pass a function to the setSate.
+   * If the theme is light, then we we are gonna change it to dark and vice-versa.
+   */
 
   render() {
     return (
@@ -43,10 +48,10 @@ class App extends React.Component {
             <div className="container">
               <Nav />
               <React.Suspense fallback={<Loading />}>
-                {/* 
-                We give Supense a prop called fallback and if these modules - Popular, Battle, Results take too long to import 
-                then React.Suspense is going to show the prop that we pass to fallback (here we use Loading Component). 
-                */}
+                {/**
+                 * We give Supense a prop called fallback and if these modules - Popular, Battle, Results take too long to import
+                 * then React.Suspense is going to show the prop that we pass to fallback (here we use Loading Component).
+                 */}
                 <Switch>
                   <Route exact path="/" component={Popular} />
                   <Route exact path="/battle" component={Battle} />

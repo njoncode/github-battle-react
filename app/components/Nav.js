@@ -45,3 +45,6 @@ export default function Nav() {
     </ThemeConsumer>
   );
 }
+
+// When the curent theme is set to light mode, then we want to render the flashlight emoji.
+// And when the current theme is dark, then we want to render the light bulb emoji.

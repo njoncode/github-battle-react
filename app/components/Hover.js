@@ -15,3 +15,5 @@ export default class Hover extends React.Component {
     );
   }
 }
+
+// Tooltip is just a way to inform the user about a specific item in the list if it's not totally clear based on the content as well as the icon.

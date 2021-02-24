@@ -13,6 +13,13 @@ import Tooltip from './Tooltip';
 
 function LanguagesNav({ selected, onUpdateLanguage }) {
   const languages = ['All', 'Javascript', 'Ruby', 'Java', 'CSS', 'Python'];
+  /**
+   * We loop over all the languages and for each language inside of the languages array, we create a list item.
+   * We give this list a key so that the react will know if anything changes inside of the list for performance reasons.
+   *  Then inside of this, we render a button as this list is gonna be clickable.
+   *
+   * If whatever langauge we are mapping over equals whatever the selected language is on our local state, then this style is applied i.e the color is gonna be red.
+   * */
 
   return (
     <ul className="flex-center">
@@ -21,7 +28,7 @@ function LanguagesNav({ selected, onUpdateLanguage }) {
           <button
             className="btn-clear nav-link"
             style={language === selected ? { color: 'rgb(187, 46, 31)' } : null}
-            onClick={() => onUpdateLanguage(language)}
+            onClick={() => onUpdateLanguage(language)} // When the langauge button is clicked,
           >
             {language}
           </button>
@@ -153,3 +160,39 @@ export default class Popular extends React.Component {
     );
   }
 }
+
+/**
+ 
+ *  NOTE:
+ *
+ * onClick={() => onUpdateLanguage(language)}
+ * We want to pass clickOn a function definition not a function invocation
+ * So we pass it an arrow function. So whenevr the button is clicked on, it will invoke the fuction that we gave it.
+ * And when that function is invoked, then it's gonna go ahead & invoke this.updateLanguage passing it the langiuage
+ *
+ *
+ * onClick={() => onUpdateLanguage(language)}      ()
+ * As soon as this component renders, it is gonna get to this line and then this is immediately gonna invoke updateLanguage.
+ 
+ */
+
+/**
+ 
+ * updateLanguage (selectedLanguage) {
+    this.setState({
+      selectedLanguage  
+    })
+  }
+
+  * The reason we call setState (this.setState) is to let React know that:
+ 
+ 1. We should change the local state of the componnt.
+ 2. And it should cause a re-render which is gonna update the UI.
+
+  updateLanguage (selectedLanguage) {
+  this.state.selectedLanguage = selectedLanguage
+  }
+
+  This may be changing the selected language property on our state but becoause we are not calling setState, we are not actually cauSing re-render which is what's gonna update the UI.
+
+  */

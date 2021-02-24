@@ -22,7 +22,9 @@ module.exports = {
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
     ],
   },
-  mode: 'development',
+
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+
   //  We can set the mode property to development or production depending on which environment we’re in.
   plugins: [
     new HtmlWebpackPlugin({
@@ -37,3 +39,8 @@ module.exports = {
 
 // In order to use HtmlWebpackPlugin, we create a new instance of it inside of our plugins array.
 // The primary purpose of a loader is to give webpack the ability to process more than just JavaScript and JSON files.
+
+/*
+  "build": "NODE_ENV = 'production' webpack",    
+  This is the clue to react to strip out PropTypes and all of the warnings to make sure that the react part of the things is as lean as possible.
+*/
